@@ -3,7 +3,6 @@
     "name": "E-bookView",
     "slug": "ebookview",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
@@ -30,6 +29,21 @@
       "eas": {
         "projectId": "f7426dc8-d0e2-4678-a06f-6f5b393148fd"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Literata-Black.ttf",
+            "./assets/fonts/Literata-Bold.ttf",
+            "./assets/fonts/Literata-ExtraBold.ttf",
+            "./assets/fonts/Literata-Medium.ttf",
+            "./assets/fonts/Literata-Regular.ttf",
+            "./assets/fonts/Literata-SemiBold.ttf"
+          ]
+        }
+      ]
+    ]
   }
 }
