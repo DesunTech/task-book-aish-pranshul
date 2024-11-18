@@ -11,7 +11,7 @@ const formatPrice = price => {
   return `₹${price?.toString().replace(/\B(?=(\d{4})+(?!\d))/g, ",")}`;
 };
 
-export const CardBanner = ({imageUrl, price, onReadMore}) => {
+export const BannerCard = ({imageUrl, price, onReadMore}) => {
   return (
     <View style={styles.container}>
       {/* Background Image */}
@@ -28,7 +28,9 @@ export const CardBanner = ({imageUrl, price, onReadMore}) => {
       <View style={styles.overlay}>
         {/* Price Section */}
         <View style={styles.priceContainer}>
-          <RNText style={styles.price}>{formatPrice(price)}</RNText>
+          <RNText style={styles.price}>
+            {price ? formatPrice(price) : StringValues.NotForSale}
+          </RNText>
         </View>
 
         {/* Read More Button */}
@@ -78,11 +80,11 @@ const styles = StyleSheet.create({
   readMoreButton: {
     alignSelf: "flex-end",
     backgroundColor: ColorValues.background.button, // Vibrant red button
-    padding: Scaling.eight,
+    paddingHorizontal: Scaling.ten,
+    paddingVertical: Scaling.eight,
     borderRadius: Scaling.eight,
   },
   readMoreText: {
     color: ColorValues.background.default,
-    padding: Scaling.two,
   },
 });

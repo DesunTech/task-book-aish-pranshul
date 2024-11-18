@@ -5,7 +5,7 @@ import {RNText} from "../Text/RNText";
 import {Image} from "expo-image";
 import {ColorValues} from "../../constants";
 
-export const BookCard = ({uri, title, isNewArrival = true}) => {
+export const BookCard = ({imageUrl, title, isNewArrival}) => {
   return (
     <View style={styles.cardContainer}>
       {/* New Arrival Badge */}
@@ -22,7 +22,7 @@ export const BookCard = ({uri, title, isNewArrival = true}) => {
       {/* Container for image and title */}
       <View style={styles.contentContainer}>
         {/* Image */}
-        <Image source={{uri}} style={styles.bannerImage} />
+        <Image source={{uri: imageUrl}} style={styles.bannerImage} />
 
         {/* Title */}
         <View style={styles.textContainer}>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     marginLeft: Scaling.ten,
-    maxWidth: RFValue.moderateScale(110), // Limit the width of the title
+    maxWidth: RFValue.moderateScale(110),
   },
   titleText: {
     fontSize: RFValue.moderateScale(14),

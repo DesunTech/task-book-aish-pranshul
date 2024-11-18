@@ -37,6 +37,8 @@ export const RNTab = () => {
     <Tabs.Container
       renderHeader={Header}
       width={"100%"}
+      allowHeaderOverscroll={false}
+      contentContainerStyle={{scrollEnabled: false}}
       renderTabBar={props => (
         <MaterialTabBar
           {...props}
@@ -44,10 +46,11 @@ export const RNTab = () => {
           style={{paddingHorizontal: Scaling.eight}}
           contentContainerStyle={{}}
           tabStyle={{
-            minWidth: RFValue.moderateScale(100),
+            minWidth: RFValue.moderateScale(120),
           }}
           indicatorStyle={{
             height: Scaling.two,
+            width: "70%",
           }}
           TabItemComponent={props => (
             <MaterialTabItem

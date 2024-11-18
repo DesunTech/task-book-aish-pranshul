@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
   },
   icon: {
     color: ColorValues.text.primary,
+    marginRight: Scaling.two,
   },
   title: {
     marginLeft: Scaling.ten,
