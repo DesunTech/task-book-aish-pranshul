@@ -5,6 +5,9 @@ const initialState = {
   isLoading: false,
   bookDataList: [],
   totalItems: 0,
+
+  subjectFilter: null,
+  bookDetails: {},
 };
 
 const bookSlice = createSlice({
@@ -24,10 +27,17 @@ const bookSlice = createSlice({
     });
   },
   reducers: {
+    setSubjectFilterOption: (state, {payload}) => {
+      state.subjectFilter = payload;
+    },
+    setBookDetailsData: (state, {payload}) => {
+      state.bookDetails = payload;
+    },
     clearBookData: state => {
       state.bookData = [];
     },
   },
 });
-export const {clearBookData} = bookSlice.actions;
+export const {clearBookData, setSubjectFilterOption, setBookDetailsData} =
+  bookSlice.actions;
 export const bookReducer = bookSlice.reducer;

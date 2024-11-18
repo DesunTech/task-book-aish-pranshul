@@ -4,6 +4,9 @@ export const ColorValues = {
     black: "#000",
     card: "#F2F2F2",
     button: "#034AFF",
+    border: "#ccc",
+    lightSky: "#87CEEB",
+    lavender: "#E6E6FA",
   },
   text: {
     heading: "#333333", // Color for headings

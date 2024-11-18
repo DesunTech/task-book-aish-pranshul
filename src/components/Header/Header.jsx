@@ -8,6 +8,7 @@ import {RNText} from "../Text/RNText";
 import {Scaling} from "../../constants/dimensions";
 import {styles} from "./styles";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {useNavigation} from "@react-navigation/native";
 
 /**
  * Header Component
@@ -28,19 +29,27 @@ export const Header = ({
   searchIcon,
   filterIcon,
   handleOnPressFilter,
+  containerStyle,
+  iconStyle,
 }) => {
   // Safe area view either working on android or ios, to handle that uses insets
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
   return (
-    <View style={[styles.container, {paddingTop: insets.top * 0.1}]}>
+    <View
+      style={[
+        styles.container,
+        {paddingTop: insets.top * 0.1},
+        {...containerStyle},
+      ]}>
       <View style={styles.innerContainer}>
         <View style={styles.innerContainer}>
           {backIcon && (
             <MaterialCommunityIcons
               name="keyboard-backspace"
               size={2 * Scaling.fourteen}
-              onPress={onPress}
-              style={styles.icon}
+              onPress={() => (onPress ? onPress : navigation.goBack())}
+              style={[styles.icon, {...iconStyle}]}
             />
           )}
           {title && (
@@ -57,7 +66,9 @@ export const Header = ({
               name="search1"
               size={2 * Scaling.fourteen}
               style={styles.icon}
-              onPress={() => {}}
+              onPress={() => {
+                navigation.navigate("SearchScreen");
+              }}
             />
           )}
           {filterIcon && (

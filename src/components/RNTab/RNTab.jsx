@@ -6,13 +6,13 @@ import {
   Tabs,
 } from "react-native-collapsible-tab-view";
 import {RFValue} from "../../utils";
-import {FontFamilyLiterata, StringValues} from "../../constants";
+import {ColorValues, FontFamilyLiterata, StringValues} from "../../constants";
 import {RNText} from "../Text/RNText";
 import {Scaling} from "../../constants/dimensions";
+import {Header} from "../Header/Header";
 
-const HEADER_HEIGHT = RFValue.moderateScale(150);
+const HEADER_HEIGHT = RFValue.moderateScale(220);
 
-const DATA = [0, 1, 2, 3, 4];
 const TAB_NAMES = [
   StringValues.Popular,
   StringValues.Categories,
@@ -20,22 +20,23 @@ const TAB_NAMES = [
   StringValues.BestSellers,
   StringValues.NewWriters,
 ];
-const identity = v => v + "";
 
-// Header Component
-const Header = () => {
-  return <View style={styles.header} />;
-};
-
-// Render content for each tab
-const renderTabContent = index => (
-  <View style={[styles.box, index % 2 === 0 ? styles.boxB : styles.boxA]} />
-);
-
-export const RNTab = () => {
+export const RNTab = ({tabs = TAB_NAMES, children, tabHeader}) => {
+  const TabHeader = () => {
+    return (
+      <View style={styles.header}>
+        <Header
+          backIcon
+          containerStyle={{backgroundColor: ColorValues.background.lightSky}}
+          iconStyle={{color: ColorValues.background.default}}
+        />
+        {tabHeader}
+      </View>
+    );
+  };
   return (
     <Tabs.Container
-      renderHeader={Header}
+      renderHeader={TabHeader}
       width={"100%"}
       allowHeaderOverscroll={false}
       contentContainerStyle={{scrollEnabled: false}}
@@ -50,7 +51,7 @@ export const RNTab = () => {
           }}
           indicatorStyle={{
             height: Scaling.two,
-            width: "70%",
+            width: "60%",
           }}
           TabItemComponent={props => (
             <MaterialTabItem
@@ -63,14 +64,9 @@ export const RNTab = () => {
           )}
         />
       )}>
-      {TAB_NAMES.map(tabName => (
+      {tabs.map((tabName, index) => (
         <Tabs.Tab name={tabName} key={tabName}>
-          <Tabs.FlatList
-            data={DATA}
-            showsVerticalScrollIndicator={false}
-            renderItem={({index}) => renderTabContent(index)}
-            keyExtractor={identity}
-          />
+          {children[index]}
         </Tabs.Tab>
       ))}
     </Tabs.Container>
@@ -78,37 +74,15 @@ export const RNTab = () => {
 };
 
 const styles = StyleSheet.create({
-  box: {
-    width: "100%",
-    height: 250,
-  },
-  boxA: {
-    backgroundColor: "white",
-  },
-  boxB: {
-    backgroundColor: "#D8D8D8",
-  },
   header: {
     height: HEADER_HEIGHT,
     width: "100%",
-    backgroundColor: "#2196f3",
+    backgroundColor: ColorValues.background.lightSky,
   },
   tabBarContainer: {
     flexDirection: "row",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: ColorValues.background.card,
     borderBottomWidth: 1,
-    borderBottomColor: "#dcdcdc",
-  },
-  tabLabel: {
-    flex: 1,
-    textAlign: "center",
-    paddingVertical: 10,
-    fontSize: RFValue.moderateScale(14),
-    color: "#888",
-    fontWeight: "400",
-  },
-  focusedTabLabel: {
-    color: "#2196f3",
-    fontWeight: "bold",
+    borderBottomColor: ColorValues.text.muted,
   },
 });

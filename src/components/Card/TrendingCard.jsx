@@ -1,44 +1,51 @@
-import {StyleSheet, View} from "react-native";
+import {StyleSheet, TouchableOpacity, View} from "react-native";
 import {RFValue} from "../../utils";
 import {Scaling} from "../../constants/dimensions";
 import {RNText} from "../Text/RNText";
 import {Image} from "expo-image";
 import {ColorValues} from "../../constants";
 
-export const TrendingCard = ({imageUrl, category, title = "N/A"}) => {
+export const TrendingCard = ({
+  imageUrl,
+  category,
+  title = "N/A",
+  handlePressOnCard,
+}) => {
   return (
-    <View style={{alignItems: "center", marginHorizontal: Scaling.ten}}>
-      {/* Category label at the top-left corner */}
-      <View style={styles.categoryContainer}>
-        <RNText fontWeight={600} style={styles.categoryText}>
-          {category}
+    <TouchableOpacity onPress={handlePressOnCard}>
+      <View style={{alignItems: "center", marginHorizontal: Scaling.ten}}>
+        {/* Category label at the top-left corner */}
+        <View style={styles.categoryContainer}>
+          <RNText fontWeight={600} style={styles.categoryText}>
+            {category}
+          </RNText>
+        </View>
+
+        {/* Image */}
+        <Image source={{uri: imageUrl}} style={styles.bannerImage} />
+
+        {/* Book Title */}
+        <RNText
+          numberOfLines={1}
+          fontWeight={600}
+          style={{
+            textAlign: "center",
+            marginVertical: Scaling.six,
+            maxWidth: RFValue.moderateScale(100),
+          }}>
+          {title}
         </RNText>
       </View>
-
-      {/* Image */}
-      <Image source={{uri: imageUrl}} style={styles.bannerImage} />
-
-      {/* Book Title */}
-      <RNText
-        numberOfLines={1}
-        fontWeight={600}
-        style={{
-          textAlign: "center",
-          marginVertical: Scaling.six,
-          maxWidth: RFValue.moderateScale(100),
-        }}>
-        {title}
-      </RNText>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 // Styles for the components
 const styles = StyleSheet.create({
   categoryContainer: {
-    position: "absolute", // Position it absolutely
-    top: 10, // Adjust as needed
-    left: 10, // Adjust as needed
+    position: "absolute",
+    top: 10,
+    left: 10,
     zIndex: 4,
     backgroundColor: ColorValues.background.default, // Semi-transparent background for contrast
     padding: Scaling.eight,

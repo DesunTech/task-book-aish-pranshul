@@ -3,37 +3,34 @@ import {AxiosClient} from "../AxiosClient";
 
 export const getBookAsync = createAsyncThunk(
   "get/book",
-  async ({payload, params}, toolkit) => {
+  async (payload, toolkit) => {
     return await AxiosClient(
       "GET",
-      `/volumes?q=${payload}`,
+      `/volumes?q=${payload.q}&subject:${payload?.subject}&startIndex=${payload.startIndex}&maxResult=${payload?.maxResults}`,
       [],
       toolkit,
-      params,
     );
   },
 );
 export const getTrendingBookAsync = createAsyncThunk(
   "get/trending/book",
-  async ({payload, params}, toolkit) => {
+  async (payload, toolkit) => {
     return await AxiosClient(
       "GET",
-      `/volumes?q=${payload}`,
+      `/volumes?q=${payload.q}&subject:${payload?.subject}&startIndex=${payload.startIndex}&maxResult=${payload?.maxResults}`,
       [],
       toolkit,
-      params,
     );
   },
 );
 export const getNewBookAsync = createAsyncThunk(
   "get/new/book",
-  async ({payload, params}, toolkit) => {
+  async (payload, toolkit) => {
     return await AxiosClient(
       "GET",
-      `/volumes?q=${payload}`,
+      `/volumes?q=${payload.q}&subject:${payload?.subject}&startIndex=${payload.startIndex}&maxResult=${payload?.maxResults}`,
       [],
       toolkit,
-      params,
     );
   },
 );

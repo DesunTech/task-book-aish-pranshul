@@ -11,7 +11,7 @@ const formatPrice = price => {
   return `₹${price?.toString().replace(/\B(?=(\d{4})+(?!\d))/g, ",")}`;
 };
 
-export const BannerCard = ({imageUrl, price, onReadMore}) => {
+export const BannerCard = ({imageUrl, price, handlePressOnCard}) => {
   return (
     <View style={styles.container}>
       {/* Background Image */}
@@ -34,7 +34,9 @@ export const BannerCard = ({imageUrl, price, onReadMore}) => {
         </View>
 
         {/* Read More Button */}
-        <TouchableOpacity style={styles.readMoreButton} onPress={onReadMore}>
+        <TouchableOpacity
+          style={styles.readMoreButton}
+          onPress={handlePressOnCard}>
           <RNText fontWeight={600} style={styles.readMoreText}>
             {StringValues.ReadMore}
           </RNText>

@@ -22,7 +22,7 @@ export const RNText = props => {
     ...textProps
   } = props;
   return (
-    <View>
+    <>
       <Text
         {...textProps}
         style={[
@@ -35,6 +35,6 @@ export const RNText = props => {
         ]}>
         {children}
       </Text>
-    </View>
+    </>
   );
 };

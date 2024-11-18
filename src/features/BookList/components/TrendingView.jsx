@@ -8,7 +8,7 @@ import {StringValues} from "../../../constants";
 import {useSelector} from "react-redux";
 
 export const TrendingView = () => {
-  const {handleLoadMore, loading} = useBookList({
+  const {handleLoadMore, loading, handlePressOnCard} = useBookList({
     bookType: BookType.trending,
   });
   const {trendingBookList, isLoading} = useSelector(
@@ -34,6 +34,7 @@ export const TrendingView = () => {
                 imageUrl={item?.volumeInfo?.imageLinks?.thumbnail}
                 category={item?.volumeInfo?.categories ?? "N/A"}
                 title={item?.volumeInfo?.title ?? "N/A"}
+                handlePressOnCard={() => handlePressOnCard(item)}
               />
             </View>
           );

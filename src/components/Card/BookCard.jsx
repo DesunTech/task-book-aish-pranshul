@@ -1,37 +1,44 @@
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {RFValue} from "../../utils";
 import {Scaling} from "../../constants/dimensions";
 import {RNText} from "../Text/RNText";
 import {Image} from "expo-image";
 import {ColorValues} from "../../constants";
 
-export const BookCard = ({imageUrl, title, isNewArrival}) => {
+export const BookCard = ({
+  imageUrl,
+  title,
+  isNewArrival,
+  handlePressOnCard,
+}) => {
   return (
-    <View style={styles.cardContainer}>
-      {/* New Arrival Badge */}
-      {isNewArrival && (
-        <View style={styles.categoryContainer}>
-          <RNText
-            color={ColorValues.background.default}
-            style={styles.categoryText}>
-            {"New Arrival"}
-          </RNText>
-        </View>
-      )}
+    <TouchableOpacity onPress={handlePressOnCard}>
+      <View style={styles.cardContainer}>
+        {/* New Arrival Badge */}
+        {isNewArrival && (
+          <View style={styles.categoryContainer}>
+            <RNText
+              color={ColorValues.background.default}
+              style={styles.categoryText}>
+              {"New Arrival"}
+            </RNText>
+          </View>
+        )}
 
-      {/* Container for image and title */}
-      <View style={styles.contentContainer}>
-        {/* Image */}
-        <Image source={{uri: imageUrl}} style={styles.bannerImage} />
+        {/* Container for image and title */}
+        <View style={styles.contentContainer}>
+          {/* Image */}
+          <Image source={{uri: imageUrl}} style={styles.bannerImage} />
 
-        {/* Title */}
-        <View style={styles.textContainer}>
-          <RNText numberOfLines={2} fontWeight={500} style={styles.titleText}>
-            {title}
-          </RNText>
+          {/* Title */}
+          <View style={styles.textContainer}>
+            <RNText numberOfLines={2} fontWeight={500} style={styles.titleText}>
+              {title}
+            </RNText>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

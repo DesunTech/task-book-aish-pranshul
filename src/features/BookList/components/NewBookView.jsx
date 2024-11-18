@@ -8,9 +8,11 @@ import {BookType} from "../../../utils";
 import {useSelector} from "react-redux";
 
 export const NewBookView = () => {
-  const {handleLoadMore, loading, hasMoreData} = useBookList({
-    bookType: BookType.latest,
-  });
+  const {handleLoadMore, loading, hasMoreData, handlePressOnCard} = useBookList(
+    {
+      bookType: BookType.latest,
+    },
+  );
   const {newBookList, isLoading} = useSelector(state => state.newBook);
 
   return (
@@ -31,6 +33,7 @@ export const NewBookView = () => {
               imageUrl={item?.volumeInfo?.imageLinks?.thumbnail}
               title={item?.volumeInfo?.title}
               isNewArrival
+              handlePressOnCard={() => handlePressOnCard(item)}
             />
           );
         }}

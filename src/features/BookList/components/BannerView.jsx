@@ -7,7 +7,7 @@ import {BookType} from "../../../utils";
 
 export const BannerView = () => {
   const {bookDataList, isLoading} = useSelector(state => state.book);
-  const {handleLoadMore, loading} = useBookList({
+  const {handleLoadMore, loading, handlePressOnCard} = useBookList({
     bookType: BookType.banner,
   });
 
@@ -22,6 +22,7 @@ export const BannerView = () => {
             <BannerCard
               imageUrl={item?.volumeInfo?.imageLinks?.thumbnail}
               price={item?.saleInfo?.listPrice?.amount}
+              handlePressOnCard={() => handlePressOnCard(item)}
             />
           );
         }}
