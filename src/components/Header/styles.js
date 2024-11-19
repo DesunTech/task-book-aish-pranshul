@@ -1,32 +1,39 @@
-import {StyleSheet} from "react-native";
-import {ColorValues} from "../../constants";
-import {Scaling} from "../../constants/dimensions";
+import { StyleSheet } from "react-native";
+import colors from "../../utils/colors";
 
-export const styles = StyleSheet.create({
-  container: {
-    backgroundColor: ColorValues.background.default,
-  },
-  innerContainer: {
+const styles = StyleSheet.create({
+  header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: Scaling.eight,
-    paddingVertical: Scaling.eight,
+    width: "100%",
+    padding: 10,
+    backgroundColor: colors.primary,
   },
-  icon: {
-    color: ColorValues.text.primary,
-    marginRight: Scaling.two,
+  logo: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  searchContainer: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    borderColor: colors.black,
+    borderRadius: 5,
+  },
+  searchInput: {
+    width: "90%",
+    borderWidth: 0,
+  },
+  iconContainer: {
+    padding: 5,
   },
   title: {
-    marginLeft: Scaling.ten,
-    fontSize: Scaling.twelve,
-    marginRight: 10,
-  },
-  titleWithoutBack: {
-    marginLeft: 0,
-  },
-  rightIconsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    fontSize: 16,
+    color: colors.white,
+    fontWeight: '500'
   },
 });
+
+export default styles;

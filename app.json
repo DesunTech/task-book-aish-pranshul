@@ -1,49 +1,28 @@
 {
   "expo": {
-    "name": "E-bookView",
-    "slug": "ebookview",
+    "name": "exerciseReactNative",
+    "slug": "exerciseReactNative",
     "version": "1.0.0",
-    "icon": "./assets/icon.png",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./src/assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.ebookview"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.ebookview"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "f7426dc8-d0e2-4678-a06f-6f5b393148fd"
       }
     },
-    "plugins": [
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./assets/fonts/Literata-Black.ttf",
-            "./assets/fonts/Literata-Bold.ttf",
-            "./assets/fonts/Literata-ExtraBold.ttf",
-            "./assets/fonts/Literata-Medium.ttf",
-            "./assets/fonts/Literata-Regular.ttf",
-            "./assets/fonts/Literata-SemiBold.ttf"
-          ]
-        }
-      ]
-    ]
+    "web": {
+      "favicon": "./src/assets/favicon.png"
+    }
   }
 }
