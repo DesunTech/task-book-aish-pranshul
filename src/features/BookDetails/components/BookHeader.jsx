@@ -1,7 +1,7 @@
-import {StyleSheet, View} from "react-native";
+import {ImageBackground, StyleSheet, View} from "react-native";
 import {ColorValues, StringValues} from "../../../constants";
 import {Scaling} from "../../../constants/dimensions";
-import {RNText} from "../../../components";
+import {Header, RNText} from "../../../components";
 import {formatDate} from "../../../utils";
 
 export const BookHeader = ({
@@ -10,9 +10,30 @@ export const BookHeader = ({
   authors = [],
   publishedDate,
   publisher,
+  backgroundImage,
 }) => {
   return (
-    <View>
+    <ImageBackground
+      source={
+        backgroundImage
+          ? {uri: backgroundImage}
+          : require("../../../../assets/dummy_book.jpg")
+      }
+      style={{flex: 1, pointerEvents: "none"}}>
+      <Header
+        backIcon
+        containerStyle={[
+          {
+            backgroundColor: "transparent",
+          },
+        ]}
+        iconStyle={{
+          color: ColorValues.background.default,
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          borderRadius: 4,
+        }}
+      />
+
       <View style={styles.container}>
         <RNText fontWeight={700} numberOfLines={1} size={Scaling.sixteen}>
           {title}
@@ -31,7 +52,7 @@ export const BookHeader = ({
           {publishedDate ? formatDate(publishedDate) : "N/A"}
         </RNText>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {View, StyleSheet, Dimensions} from "react-native";
+import {View, StyleSheet} from "react-native";
 import {
   MaterialTabBar,
   MaterialTabItem,
@@ -8,7 +8,6 @@ import {
 import {RFValue} from "../../utils";
 import {ColorValues, FontFamilyLiterata, StringValues} from "../../constants";
 import {Scaling} from "../../constants/dimensions";
-import {Header} from "../Header/Header";
 
 const HEADER_HEIGHT = RFValue.moderateScale(220);
 
@@ -20,7 +19,13 @@ const TAB_NAMES = [
   StringValues.Categories,
 ];
 
-export const RNTab = ({tabs = TAB_NAMES, tabHeader, currentTab, children}) => {
+export const RNTab = ({
+  tabs = TAB_NAMES,
+  tabHeader,
+  currentTab,
+  children,
+  otherProps,
+}) => {
   if (typeof currentTab !== "function") {
     throw new Error("Current Tab callback function is required.");
   }
@@ -32,16 +37,7 @@ export const RNTab = ({tabs = TAB_NAMES, tabHeader, currentTab, children}) => {
     }
   };
   const TabHeader = () => {
-    return (
-      <View style={styles.header}>
-        <Header
-          backIcon
-          containerStyle={{backgroundColor: ColorValues.background.lightSky}}
-          iconStyle={{color: ColorValues.background.default}}
-        />
-        {tabHeader}
-      </View>
-    );
+    return <View style={styles.header}>{tabHeader}</View>;
   };
   return (
     <Tabs.Container
@@ -50,6 +46,7 @@ export const RNTab = ({tabs = TAB_NAMES, tabHeader, currentTab, children}) => {
       onTabChange={handleTabChange}
       allowHeaderOverscroll={false}
       contentContainerStyle={{scrollEnabled: false}}
+      {...otherProps}
       renderTabBar={props => (
         <MaterialTabBar
           {...props}
