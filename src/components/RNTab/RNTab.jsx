@@ -20,7 +20,17 @@ const TAB_NAMES = [
   StringValues.Categories,
 ];
 
-export const RNTab = ({tabs = TAB_NAMES, children, tabHeader}) => {
+export const RNTab = ({tabs = TAB_NAMES, tabHeader, currentTab, children}) => {
+  if (typeof currentTab !== "function") {
+    throw new Error("Current Tab callback function is required.");
+  }
+  const handleTabChange = index => {
+    try {
+      currentTab(index);
+    } catch (error) {
+      console.error(error?.message);
+    }
+  };
   const TabHeader = () => {
     return (
       <View style={styles.header}>
@@ -37,6 +47,7 @@ export const RNTab = ({tabs = TAB_NAMES, children, tabHeader}) => {
     <Tabs.Container
       renderHeader={TabHeader}
       width={"100%"}
+      onTabChange={handleTabChange}
       allowHeaderOverscroll={false}
       contentContainerStyle={{scrollEnabled: false}}
       renderTabBar={props => (

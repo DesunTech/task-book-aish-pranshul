@@ -7,3 +7,4 @@ export * from "./Card/BookCard";
 export * from "./Card/TrendingCard";
 export * from "./Input/RNInput";
 export * from "./RadioButton/RadioButton";
+export * from "./EmptyComponent/EmptyComponent";

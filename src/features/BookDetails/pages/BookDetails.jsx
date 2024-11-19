@@ -1,19 +1,19 @@
 import {View} from "react-native";
 import React from "react";
-import {RNTab, RNText} from "../../../components";
+import {EmptyComponent, RNTab} from "../../../components";
 import {Tabs} from "react-native-collapsible-tab-view";
 import {BookHeader, BookOverViewTab} from "../components";
 import {useDispatch, useSelector} from "react-redux";
-import {TrendingView} from "../../BookList/components";
 import {BookSearchCard} from "../../BookList/components/BookSearchCard";
 import {Scaling} from "../../../constants/dimensions";
-import {StringValues} from "../../../constants";
 import {useNavigation} from "@react-navigation/native";
 import {setBookDetailsData} from "../../../redux/slice";
+import useBookDetails from "../hooks/useBookDetails";
 
 export const BookDetails = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const {handleTabPress} = useBookDetails();
   const {bookDetails} = useSelector(state => state.book);
   const {trendingBookList} = useSelector(state => state.trendingBook);
   const {newBookList} = useSelector(state => state.newBook);
@@ -24,6 +24,7 @@ export const BookDetails = () => {
   return (
     <View style={{flex: 1}}>
       <RNTab
+        currentTab={index => handleTabPress(index)}
         tabHeader={
           <BookHeader
             title={bookDetails?.volumeInfo?.title}
@@ -82,9 +83,10 @@ export const BookDetails = () => {
             );
           }}
           showsVerticalScrollIndicator={false}
+          ListEmptyComponent={<EmptyComponent />}
         />
         <Tabs.FlatList
-          data={newBookList}
+          data={[]}
           keyExtractor={(item, index) => index}
           renderItem={({item}) => {
             const {title, authors, imageLinks} = item.volumeInfo;
@@ -102,9 +104,10 @@ export const BookDetails = () => {
             );
           }}
           showsVerticalScrollIndicator={false}
+          ListEmptyComponent={<EmptyComponent />}
         />
         <Tabs.FlatList
-          data={newBookList}
+          data={[]}
           keyExtractor={(item, index) => index}
           renderItem={({item}) => {
             const {title, authors, imageLinks} = item.volumeInfo;
@@ -122,6 +125,7 @@ export const BookDetails = () => {
             );
           }}
           showsVerticalScrollIndicator={false}
+          ListEmptyComponent={<EmptyComponent />}
         />
       </RNTab>
     </View>
