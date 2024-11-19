@@ -33,11 +33,11 @@ const bookSlice = createSlice({
     setBookDetailsData: (state, {payload}) => {
       state.bookDetails = payload;
     },
-    clearBookData: state => {
-      state.bookData = [];
+    clearSubjectFilter: state => {
+      state.subjectFilter = null;
     },
   },
 });
-export const {clearBookData, setSubjectFilterOption, setBookDetailsData} =
+export const {clearSubjectFilter, setSubjectFilterOption, setBookDetailsData} =
   bookSlice.actions;
 export const bookReducer = bookSlice.reducer;

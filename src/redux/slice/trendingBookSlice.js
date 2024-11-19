@@ -22,16 +22,14 @@ const trendingBookSlice = createSlice({
 
         const bookDataList = payload.data?.items;
         const trendingBooks = [];
-        // bookDataList.forEach(book => {
-        //   const rating = book?.volumeInfo?.averageRating || 0;
-        //   const reviewsCount = book.volumeInfo.ratingsCount || 0;
-        //   console.log("rating", rating);
-
-        //   // Check for trending books (for example, rating > 0 or reviewsCount > 1)
-        //   if (rating > 0 || reviewsCount > 1) {
-        //     trendingBooks.push(book);
-        //   }
-        // });
+        bookDataList.forEach(book => {
+          const rating = book?.volumeInfo?.averageRating || 0;
+          const reviewsCount = book.volumeInfo.ratingsCount || 0;
+          // Check for trending books (for example, rating > 0 or reviewsCount > 1)
+          if (rating > 0 || reviewsCount > 1) {
+            trendingBooks.push(book);
+          }
+        });
         state.trendingBookList = bookDataList;
       },
     );

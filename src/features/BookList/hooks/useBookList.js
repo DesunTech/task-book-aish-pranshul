@@ -6,13 +6,20 @@ import {
   getTrendingBookAsync,
 } from "../../../redux/async";
 import {BookType} from "../../../utils";
-import {setBookDetailsData, setSubjectFilterOption} from "../../../redux/slice";
+import {
+  clearSubjectFilter,
+  setBookDetailsData,
+  setSubjectFilterOption,
+} from "../../../redux/slice";
 import {useNavigation} from "@react-navigation/native";
 
 const useBookList = ({bookType = ""}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const {subjectFilter} = useSelector(state => state.book);
+  const {subjectFilter, bookDataList} = useSelector(state => state.book);
+  const {trendingBookList} = useSelector(state => state.trendingBook);
+  const {newBookList} = useSelector(state => state.newBook);
+
   const {isLoading} = useSelector(state => state.newBook);
   const [loading, setLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -88,13 +95,20 @@ const useBookList = ({bookType = ""}) => {
   };
 
   useEffect(() => {
-    const params = {
-      subject: "",
-      startIndex: 0,
-      maxResults: maxResults,
-      q: bookType === BookType.latest ? currentYear : null,
-    };
-    fetchBooksByType(params);
+    // Calls apis only if no data present in any of the list
+    if (
+      !trendingBookList.length > 0 &&
+      !newBookList.length > 0 &&
+      !bookDataList.length > 0
+    ) {
+      const params = {
+        subject: "",
+        startIndex: 0,
+        maxResults: maxResults,
+        q: bookType === BookType.latest ? currentYear : null,
+      };
+      fetchBooksByType(params);
+    }
   }, [dispatch, bookType]);
 
   useEffect(() => {
@@ -104,10 +118,16 @@ const useBookList = ({bookType = ""}) => {
       maxResults: maxResults,
       q: null,
     };
-    if (subjectFilter) {
+    if (subjectFilter !== null) {
       fetchBooksByType(params);
     }
   }, [subjectFilter]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearSubjectFilter());
+    };
+  }, []);
 
   return {
     loading,

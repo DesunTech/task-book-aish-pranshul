@@ -7,18 +7,17 @@ import {
 } from "react-native-collapsible-tab-view";
 import {RFValue} from "../../utils";
 import {ColorValues, FontFamilyLiterata, StringValues} from "../../constants";
-import {RNText} from "../Text/RNText";
 import {Scaling} from "../../constants/dimensions";
 import {Header} from "../Header/Header";
 
 const HEADER_HEIGHT = RFValue.moderateScale(220);
 
 const TAB_NAMES = [
-  StringValues.Popular,
-  StringValues.Categories,
-  StringValues.FreeBooks,
+  StringValues.Overview,
   StringValues.BestSellers,
   StringValues.NewWriters,
+  StringValues.FreeBooks,
+  StringValues.Categories,
 ];
 
 export const RNTab = ({tabs = TAB_NAMES, children, tabHeader}) => {

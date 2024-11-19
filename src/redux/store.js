@@ -5,6 +5,7 @@ import {bookReducer, newBookReducer, trendingBookReducer} from "./slice";
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
+  blackList: ["book"],
 };
 
 const rootReducer = combineReducers({

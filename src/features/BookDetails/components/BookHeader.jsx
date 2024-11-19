@@ -1,37 +1,46 @@
-import {View} from "react-native";
+import {StyleSheet, View} from "react-native";
 import {ColorValues, StringValues} from "../../../constants";
 import {Scaling} from "../../../constants/dimensions";
 import {RNText} from "../../../components";
+import {formatDate} from "../../../utils";
 
-export const BookHeader = () => {
+export const BookHeader = ({
+  title,
+  subtitle,
+  authors = [],
+  publishedDate,
+  publisher,
+}) => {
   return (
     <View>
-      <View
-        style={{
-          backgroundColor: ColorValues.background.lavender,
-          paddingHorizontal: 20,
-          marginHorizontal: 8,
-          paddingVertical: 8,
-          borderRadius: 4,
-        }}>
-        <RNText fontWeight={700} size={Scaling.sixteen}>
-          Title
+      <View style={styles.container}>
+        <RNText fontWeight={700} numberOfLines={1} size={Scaling.sixteen}>
+          {title}
         </RNText>
-        <RNText>Subtitle</RNText>
-        <RNText>{StringValues.Author}:</RNText>
-        <RNText>{StringValues.Publisher}</RNText>
+        {subtitle && <RNText>{subtitle}</RNText>}
+        <RNText>
+          {StringValues.Author} : {authors.join(",")}
+        </RNText>
+        <RNText>
+          {StringValues.Publisher} : {publisher}
+        </RNText>
       </View>
-      <View
-        style={{
-          backgroundColor: ColorValues.background.lavender,
-          paddingHorizontal: 20,
-          marginHorizontal: 8,
-          marginVertical: 8,
-          paddingVertical: 8,
-          borderRadius: 4,
-        }}>
-        <RNText>{StringValues.PublishedDate}:</RNText>
+      <View style={[styles.container, {marginTop: Scaling.eight}]}>
+        <RNText>
+          {StringValues.PublishedDate} :{" "}
+          {publishedDate ? formatDate(publishedDate) : "N/A"}
+        </RNText>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: ColorValues.background.lavender,
+    paddingHorizontal: Scaling.eight,
+    marginHorizontal: Scaling.six,
+    paddingVertical: Scaling.six,
+    borderRadius: 4,
+  },
+});

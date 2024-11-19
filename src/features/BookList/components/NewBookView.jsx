@@ -37,7 +37,7 @@ export const NewBookView = () => {
             />
           );
         }}
-        onEndReached={handleLoadMore}
+        // onEndReached={handleLoadMore}
         isLoadingMore={loading || isLoading}
         hasMoreData={hasMoreData}
       />

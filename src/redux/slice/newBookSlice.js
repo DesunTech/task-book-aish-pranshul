@@ -20,8 +20,6 @@ const newBookSlice = createSlice({
         state.isLoading = false;
         state.totalItems = payload.data?.totalItems;
         state.newBookList = payload?.data?.items;
-        // const newBooks = payload?.data?.items || [];
-        // state.newBookList = [...state.newBookList, ...newBooks];
       },
     );
     builder.addMatcher(

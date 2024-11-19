@@ -40,3 +40,13 @@ export const getGreeting = () => {
     return StringValues.GoodEvening;
   }
 };
+export const formatDate = dateString => {
+  const date = new Date(dateString);
+  // eslint-disable-next-line no-undef
+  const formatter = new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+  return formatter.format(date); // Output will be in DD-MMM-YYYY
+};

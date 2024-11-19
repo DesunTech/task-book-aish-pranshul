@@ -35,7 +35,7 @@ export const RNFlatList = ({
   );
 
   const renderFooter = () => {
-    if (!isLoadingMore || !hasMoreData) return null;
+    if (!isLoadingMore || !hasMoreData || data.length === 0) return null;
     return (
       <View style={[styles.footer, footerStyle]}>
         <ActivityIndicator size="small" color={footerLoadingColor} />
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginLeft: Scaling.eight,
   },
   emptyText: {textAlign: "center"},
   footer: {

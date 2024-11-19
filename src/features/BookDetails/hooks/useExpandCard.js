@@ -3,12 +3,12 @@ import {RFValue} from "../../../utils";
 import {useState} from "react";
 
 export const useExpandCard = () => {
-  const [isOpen, setIsOpen] = useState(false); // State to track open/close
-  const heightAnim = useState(new Animated.Value(100))[0];
+  const [isOpen, setIsOpen] = useState(false);
+  const heightAnim = useState(new Animated.Value(RFValue.moderateScale(80)))[0];
   const toggleCard = () => {
     setIsOpen(prevState => !prevState);
     Animated.timing(heightAnim, {
-      toValue: isOpen ? RFValue.moderateScale(100) : RFValue.moderateScale(200),
+      toValue: isOpen ? RFValue.moderateScale(70) : RFValue.moderateScale(180),
       duration: 300,
       useNativeDriver: false,
     }).start();

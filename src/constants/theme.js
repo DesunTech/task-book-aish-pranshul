@@ -7,6 +7,7 @@ export const ColorValues = {
     border: "#ccc",
     lightSky: "#87CEEB",
     lavender: "#E6E6FA",
+    lightGrey: "#f0f0f0",
   },
   text: {
     heading: "#333333", // Color for headings

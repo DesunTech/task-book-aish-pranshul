@@ -22,4 +22,12 @@ export const StringValues = {
   Subtitle: "Subtitle",
   Publisher: "Publisher",
   PublishedDate: "Published date",
+  Description: "Description",
+  Overview: "Overview",
+  BookId: "Book Id",
+  Language: "Language",
+  Price: "Price",
+  NumberOfPages: "Number Of pages",
+  Category: "Category",
+  ComingSoon: "Coming soon",
 };

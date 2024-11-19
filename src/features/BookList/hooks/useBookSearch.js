@@ -3,9 +3,12 @@ import {useDispatch} from "react-redux";
 import {searchBookAsync} from "../../../redux/async";
 import Toast from "react-native-toast-message";
 import {StringValues} from "../../../constants";
+import {useNavigation} from "@react-navigation/native";
+import {setBookDetailsData} from "../../../redux/slice";
 
 const useBookSearch = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [query, setQuery] = useState("");
   const [bookSuggestions, setBookSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -19,7 +22,8 @@ const useBookSearch = () => {
     if (query.trim() === "") {
       setBookSuggestions([]);
       return;
-    } // Skip if query is empty
+    }
+    // Skip if query is empty
     setLoading(true);
 
     try {
@@ -43,36 +47,33 @@ const useBookSearch = () => {
     setStartIndex(0);
     setMaxResults(10);
   };
-  const handleSearchItemSelect = () => {};
+  const handleSearchItemSelect = item => {
+    dispatch(setBookDetailsData(item));
+    navigation.navigate("BookDetails");
+  };
 
   const handleLoadMore = async () => {
     if (isMoreLoading || loading) return;
     setIsMoreLoading(true);
 
-    const newStartIndex = startIndex + maxResults;
-    const newMaxResults = maxResults + 10;
+    const newStartIndex = startIndex + 1;
 
     const params = {
       subject: "",
       startIndex: newStartIndex,
-      maxResults: newMaxResults,
+      maxResults: maxResults,
     };
 
     try {
-      if (newMaxResults <= 30) {
-        const result = await dispatch(
-          searchBookAsync({payload: query, params: params}),
-        );
-        setBookSuggestions(prev => [
-          ...prev,
-          ...(result?.payload?.data?.items || []),
-        ]);
-        setStartIndex(newStartIndex);
-        setMaxResults(newMaxResults);
-        setIsMoreLoading(false);
-      } else {
-        setHasMoreData(false);
-      }
+      const result = await dispatch(
+        searchBookAsync({payload: query, params: params}),
+      );
+      setBookSuggestions(prev => [
+        ...prev,
+        ...(result?.payload?.data?.items || []),
+      ]);
+      setStartIndex(newStartIndex);
+      setIsMoreLoading(false);
     } catch (err) {
       setIsMoreLoading(false);
     } finally {
