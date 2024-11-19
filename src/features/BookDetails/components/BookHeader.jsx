@@ -19,7 +19,7 @@ export const BookHeader = ({
           ? {uri: backgroundImage}
           : require("../../../../assets/dummy_book.jpg")
       }
-      style={{flex: 1, pointerEvents: "none"}}>
+      style={{flex: 1}}>
       <Header
         backIcon
         containerStyle={{
