@@ -22,11 +22,9 @@ export const BookHeader = ({
       style={{flex: 1, pointerEvents: "none"}}>
       <Header
         backIcon
-        containerStyle={[
-          {
-            backgroundColor: "transparent",
-          },
-        ]}
+        containerStyle={{
+          backgroundColor: "transparent",
+        }}
         iconStyle={{
           color: ColorValues.background.default,
           backgroundColor: "rgba(0, 0, 0, 0.4)",

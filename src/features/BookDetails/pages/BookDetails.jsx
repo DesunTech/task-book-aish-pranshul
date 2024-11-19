@@ -32,6 +32,7 @@ export const BookDetails = () => {
             authors={bookDetails?.volumeInfo?.authors}
             publishedDate={bookDetails?.volumeInfo?.publishedDate}
             publisher={bookDetails?.volumeInfo?.publisher}
+            backgroundImage={bookDetails?.volumeInfo?.imageLinks?.thumbnail}
           />
         }>
         <Tabs.ScrollView>
