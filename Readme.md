@@ -1,3 +1,6 @@
+# Install Node modules 
+npm i
+
 # To start the server in development - 
 NODE_ENV=development npx expo start
 # To start the server in production - 
