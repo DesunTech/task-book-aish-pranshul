@@ -58,7 +58,6 @@ export const AxiosClient = async (
       ...(auth ? {Authorization: auth} : {}),
     },
   };
-  console.log("axios_config", axios_config);
 
   if (AxiosTypeString[type] === "get") {
     delete axios_config.data;
