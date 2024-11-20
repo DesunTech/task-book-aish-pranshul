@@ -67,9 +67,9 @@ const ListDetail = () => {
   ];
 
   const handleTabPress = (tabId: string): void => {
+    scrollViewRef.current?.scrollTo({ y: 160, animated: true });
     setSelectedTab(tabId);
     setShowName(true);
-    scrollViewRef.current?.scrollTo({ y: 160, animated: true });
   };
 
   const renderTab = ({ item }: { item: Tab }) => (
